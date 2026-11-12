@@ -1,0 +1,91 @@
+{
+  "commands": [
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider1",
+      "target": "hero"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider2",
+      "target": "hero"
+    },
+    {
+      "duration": 8,
+      "name": "burn",
+      "op": "apply",
+      "source": "imp",
+      "target": "hero"
+    },
+    {
+      "name": "freeze",
+      "op": "apply",
+      "source": "mage",
+      "target": "enemy"
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "op": "pause"
+    },
+    {
+      "op": "resume"
+    },
+    {
+      "name": "regen",
+      "op": "apply",
+      "source": "priest",
+      "target": "enemy"
+    },
+    {
+      "op": "advance",
+      "steps": 1
+    },
+    {
+      "name": "regen",
+      "op": "apply",
+      "source": "priest2",
+      "target": "enemy"
+    },
+    {
+      "name": "freeze",
+      "op": "apply",
+      "source": "mage",
+      "target": "hero"
+    },
+    {
+      "op": "advance",
+      "steps": 5
+    },
+    {
+      "iid": 1,
+      "op": "dispel"
+    },
+    {
+      "op": "destroy_source",
+      "source": "spider2"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider2",
+      "target": "hero"
+    },
+    {
+      "op": "dispel_all",
+      "target": "hero"
+    },
+    {
+      "op": "advance",
+      "steps": 3
+    }
+  ],
+  "entities": {
+    "enemy": 60,
+    "hero": 100
+  }
+}
