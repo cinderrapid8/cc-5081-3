@@ -1,0 +1,121 @@
+{
+  "drills": [
+    {
+      "camera_order": [
+        "track_left",
+        "track_right",
+        "tight_on_hero"
+      ],
+      "expected_hp_end": {
+        "enemy": 34,
+        "hero": 84
+      },
+      "id": "fast_stacking",
+      "input": "drills/out/fast_stacking.json",
+      "input_sha256": "81d2888f1bb82778bb45c87edb0df839745bc534a79709c98e5198935f383e54",
+      "note": "观察同源 poison 强度叠加与异源独立实例的层级差异。",
+      "observe": [
+        "同源 spider1 只有一个实例、强度叠加为 8；spider2 是独立实例",
+        "t=3 同源实例一跳 -8，异源实例一跳 -4",
+        "hex 在异目标独立计时，t=5/t=7 各跳 2 点"
+      ],
+      "rejected": false,
+      "seed": 8675309,
+      "time_horizon": 10,
+      "title": "快速叠层：同源连击叠强度、异源独立计时"
+    },
+    {
+      "camera_order": [
+        "safety_banner",
+        "chain_abort",
+        "playback_continues"
+      ],
+      "expected_hp_end": {
+        "enemy": 56,
+        "hero": 94
+      },
+      "id": "illegal_trigger_cycle",
+      "input": "drills/out/illegal_trigger_cycle.json",
+      "input_sha256": "57d80e4171e47c5ccd3c002541b683f94fe0dac4a3b5b7ddf50d089805402ef5",
+      "note": "本段声明 burn->burn 自转换；该申请必须被拒绝并保留关系链。",
+      "observe": [
+        "非法申请抛出 RecursionError，事件流留下 reaction_chain_terminated",
+        "拒绝后清空覆盖，后续 hex 申请与推进照常完成"
+      ],
+      "rejected": true,
+      "seed": 161803,
+      "time_horizon": 4,
+      "title": "反例：非法触发环被内核拒绝，正常演练继续"
+    },
+    {
+      "camera_order": [
+        "over_shoulder",
+        "impact_close",
+        "reset_wide"
+      ],
+      "expected_hp_end": {
+        "enemy": 70,
+        "hero": 110
+      },
+      "id": "low_frequency_high_intensity",
+      "input": "drills/out/low_frequency_high_intensity.json",
+      "input_sha256": "e9710913c4f2707837acd06241c9f527dad10e9c3fefb1847ebf83cb79f7277f",
+      "note": "观察 bleed 每 4 拍一次的 5 点伤害；暂停区间不补发跳伤。",
+      "observe": [
+        "bleed 每 4 拍跳 5 点；周期点与到期重合时先到期、不补跳",
+        "暂停不推进时钟，恢复后没有补发的跳伤"
+      ],
+      "rejected": false,
+      "seed": 104729,
+      "time_horizon": 12,
+      "title": "低频高强度：长周期重击与临界暂停"
+    },
+    {
+      "camera_order": [
+        "wide_standoff",
+        "freeze_flash",
+        "thaw_reaction"
+      ],
+      "expected_hp_end": {
+        "enemy": 80,
+        "hero": 91
+      },
+      "id": "mutual_suppression",
+      "input": "drills/out/mutual_suppression.json",
+      "input_sha256": "223269322a5308e8553f0d6131ea7a96854508a0c72e3e9982987e0e369c544a",
+      "note": "观察 freeze 挂起 burn 的整段窗口；冻结期间 burn 不累计时间。",
+      "observe": [
+        "burn 在 t2 先跳一次，之后被 freeze 挂起整整 5 拍",
+        "freeze 到期后 burn 恢复，剩余持续期不变，不补发挂起期跳伤"
+      ],
+      "rejected": false,
+      "seed": 314159,
+      "time_horizon": 11,
+      "title": "互相抑制：控制覆盖伤害，解除后原样恢复剩余期"
+    },
+    {
+      "camera_order": [
+        "source_marked",
+        "source_exit",
+        "residual_icons"
+      ],
+      "expected_hp_end": {
+        "enemy": 50,
+        "hero": 118
+      },
+      "id": "source_revocation",
+      "input": "drills/out/source_revocation.json",
+      "input_sha256": "00ef2423b21789c796438447455a5b8e73c6e705121af4b7eb0ae5897bde7064",
+      "note": "观察同一来源下不同政策的实例在撤销时的分化。",
+      "observe": [
+        "poison 同源叠为 8 点，t=3 一跳 -8；regen 同刻 +6，生命净减 2",
+        "poison 随 spider 退出立即移除，remove 事件记录 cause=source_exit",
+        "regen 在 spirit 退出后保留，记录 source_exit_kept 并自然到期"
+      ],
+      "rejected": false,
+      "seed": 271828,
+      "time_horizon": 7,
+      "title": "来源撤销：STACK 随源消亡、REFRESH 保留到期"
+    }
+  ]
+}

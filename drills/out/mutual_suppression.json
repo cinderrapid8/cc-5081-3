@@ -1,0 +1,328 @@
+{
+  "camera_marks": [
+    {
+      "after_battle_command": 1,
+      "mark": "wide_standoff"
+    },
+    {
+      "after_battle_command": 4,
+      "mark": "freeze_flash"
+    },
+    {
+      "after_battle_command": 6,
+      "mark": "thaw_reaction"
+    }
+  ],
+  "camera_order": [
+    "wide_standoff",
+    "freeze_flash",
+    "thaw_reaction"
+  ],
+  "commands": [
+    {
+      "name": "burn",
+      "op": "apply",
+      "source": "imp",
+      "target": "hero"
+    },
+    {
+      "mark": "wide_standoff",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 1
+    },
+    {
+      "op": "advance",
+      "steps": 1
+    },
+    {
+      "name": "freeze",
+      "op": "apply",
+      "source": "mage",
+      "target": "hero"
+    },
+    {
+      "mark": "freeze_flash",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 3
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "mark": "thaw_reaction",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 4
+    }
+  ],
+  "entities": {
+    "enemy": 80,
+    "hero": 100
+  },
+  "expected_curve_source": "tools.curve（独立小规模计算，非内核状态）",
+  "expected_hp": {
+    "enemy": [
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80
+    ],
+    "hero": [
+      100,
+      100,
+      97,
+      97,
+      97,
+      97,
+      97,
+      97,
+      97,
+      94,
+      94,
+      91
+    ]
+  },
+  "frames": [
+    {
+      "after_command": 0,
+      "camera": null,
+      "events": [
+        "entity_register",
+        "entity_register",
+        "apply"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=80 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 1,
+      "camera": "wide_standoff",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=80 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 2,
+      "camera": "wide_standoff",
+      "events": [],
+      "hp": {
+        "enemy": 80,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=1 enemy hp=80 :: (no effects)",
+        "hero": "t=1 hero hp=100 :: burnx1[iid 1|rem 7|a]"
+      },
+      "time": 1
+    },
+    {
+      "after_command": 3,
+      "camera": "wide_standoff",
+      "events": [
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 97
+      },
+      "numbers": [
+        {
+          "after": 97,
+          "before": 100,
+          "delta": -3,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "burn",
+            "tick_no": 1
+          },
+          "target": "hero"
+        }
+      ],
+      "renders": {
+        "enemy": "t=2 enemy hp=80 :: (no effects)",
+        "hero": "t=2 hero hp=97 :: burnx1[iid 1|rem 6|a]"
+      },
+      "time": 2
+    },
+    {
+      "after_command": 4,
+      "camera": "wide_standoff",
+      "events": [
+        "suppress",
+        "apply"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 97
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=2 enemy hp=80 :: (no effects)",
+        "hero": "t=2 hero hp=97 :: burnx1[iid 1|rem 6|z] | freezex1[iid 2|rem 5|a]"
+      },
+      "time": 2
+    },
+    {
+      "after_command": 5,
+      "camera": "freeze_flash",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 97
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=2 enemy hp=80 :: (no effects)",
+        "hero": "t=2 hero hp=97 :: burnx1[iid 1|rem 6|z] | freezex1[iid 2|rem 5|a]"
+      },
+      "time": 2
+    },
+    {
+      "after_command": 6,
+      "camera": "freeze_flash",
+      "events": [],
+      "hp": {
+        "enemy": 80,
+        "hero": 97
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=5 enemy hp=80 :: (no effects)",
+        "hero": "t=5 hero hp=97 :: burnx1[iid 1|rem 6|z] | freezex1[iid 2|rem 2|a]"
+      },
+      "time": 5
+    },
+    {
+      "after_command": 7,
+      "camera": "freeze_flash",
+      "events": [
+        "resume",
+        "remove"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 97
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=7 enemy hp=80 :: (no effects)",
+        "hero": "t=7 hero hp=97 :: burnx1[iid 1|rem 6|a]"
+      },
+      "time": 7
+    },
+    {
+      "after_command": 8,
+      "camera": "thaw_reaction",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 97
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=7 enemy hp=80 :: (no effects)",
+        "hero": "t=7 hero hp=97 :: burnx1[iid 1|rem 6|a]"
+      },
+      "time": 7
+    },
+    {
+      "after_command": 9,
+      "camera": "thaw_reaction",
+      "events": [
+        "hp",
+        "tick",
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 80,
+        "hero": 91
+      },
+      "numbers": [
+        {
+          "after": 94,
+          "before": 97,
+          "delta": -3,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "burn",
+            "tick_no": 2
+          },
+          "target": "hero"
+        },
+        {
+          "after": 91,
+          "before": 94,
+          "delta": -3,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "burn",
+            "tick_no": 3
+          },
+          "target": "hero"
+        }
+      ],
+      "renders": {
+        "enemy": "t=11 enemy hp=80 :: (no effects)",
+        "hero": "t=11 hero hp=91 :: burnx1[iid 1|rem 2|a]"
+      },
+      "time": 11
+    }
+  ],
+  "id": "mutual_suppression",
+  "note": "观察 freeze 挂起 burn 的整段窗口；冻结期间 burn 不累计时间。",
+  "observe": [
+    "burn 在 t2 先跳一次，之后被 freeze 挂起整整 5 拍",
+    "freeze 到期后 burn 恢复，剩余持续期不变，不补发挂起期跳伤"
+  ],
+  "rejection": null,
+  "seed": 314159,
+  "title": "互相抑制：控制覆盖伤害，解除后原样恢复剩余期"
+}

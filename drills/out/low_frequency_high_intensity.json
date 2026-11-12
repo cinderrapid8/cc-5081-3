@@ -1,0 +1,311 @@
+{
+  "camera_marks": [
+    {
+      "after_battle_command": 1,
+      "mark": "over_shoulder"
+    },
+    {
+      "after_battle_command": 3,
+      "mark": "impact_close"
+    },
+    {
+      "after_battle_command": 7,
+      "mark": "reset_wide"
+    }
+  ],
+  "camera_order": [
+    "over_shoulder",
+    "impact_close",
+    "reset_wide"
+  ],
+  "commands": [
+    {
+      "duration": 12,
+      "name": "bleed",
+      "op": "apply",
+      "source": "brute",
+      "target": "hero"
+    },
+    {
+      "mark": "over_shoulder",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "op": "advance",
+      "steps": 1
+    },
+    {
+      "mark": "impact_close",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 1
+    },
+    {
+      "op": "pause"
+    },
+    {
+      "op": "resume"
+    },
+    {
+      "op": "advance",
+      "steps": 8
+    },
+    {
+      "mark": "reset_wide",
+      "op": "camera"
+    }
+  ],
+  "entities": {
+    "enemy": 70,
+    "hero": 120
+  },
+  "expected_curve_source": "tools.curve（独立小规模计算，非内核状态）",
+  "expected_hp": {
+    "enemy": [
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70
+    ],
+    "hero": [
+      120,
+      120,
+      120,
+      120,
+      115,
+      115,
+      115,
+      115,
+      110,
+      110,
+      110,
+      110,
+      110
+    ]
+  },
+  "frames": [
+    {
+      "after_command": 0,
+      "camera": null,
+      "events": [
+        "entity_register",
+        "entity_register",
+        "apply"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=70 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: bleedx1[iid 1|rem 12|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 1,
+      "camera": "over_shoulder",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=70 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: bleedx1[iid 1|rem 12|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 2,
+      "camera": "over_shoulder",
+      "events": [],
+      "hp": {
+        "enemy": 70,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=2 enemy hp=70 :: (no effects)",
+        "hero": "t=2 hero hp=120 :: bleedx1[iid 1|rem 10|a]"
+      },
+      "time": 2
+    },
+    {
+      "after_command": 3,
+      "camera": "over_shoulder",
+      "events": [],
+      "hp": {
+        "enemy": 70,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=3 enemy hp=70 :: (no effects)",
+        "hero": "t=3 hero hp=120 :: bleedx1[iid 1|rem 9|a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 4,
+      "camera": "impact_close",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=3 enemy hp=70 :: (no effects)",
+        "hero": "t=3 hero hp=120 :: bleedx1[iid 1|rem 9|a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 5,
+      "camera": "impact_close",
+      "events": [
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 115
+      },
+      "numbers": [
+        {
+          "after": 115,
+          "before": 120,
+          "delta": -5,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "bleed",
+            "tick_no": 1
+          },
+          "target": "hero"
+        }
+      ],
+      "renders": {
+        "enemy": "t=4 enemy hp=70 :: (no effects)",
+        "hero": "t=4 hero hp=115 :: bleedx1[iid 1|rem 8|a]"
+      },
+      "time": 4
+    },
+    {
+      "after_command": 6,
+      "camera": "impact_close",
+      "events": [
+        "pause"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 115
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=4 enemy hp=70 :: (no effects)",
+        "hero": "t=4 hero hp=115 :: bleedx1[iid 1|rem 8|a]"
+      },
+      "time": 4
+    },
+    {
+      "after_command": 7,
+      "camera": "impact_close",
+      "events": [
+        "resume"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 115
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=4 enemy hp=70 :: (no effects)",
+        "hero": "t=4 hero hp=115 :: bleedx1[iid 1|rem 8|a]"
+      },
+      "time": 4
+    },
+    {
+      "after_command": 8,
+      "camera": "impact_close",
+      "events": [
+        "hp",
+        "tick",
+        "remove"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 110
+      },
+      "numbers": [
+        {
+          "after": 110,
+          "before": 115,
+          "delta": -5,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "bleed",
+            "tick_no": 2
+          },
+          "target": "hero"
+        }
+      ],
+      "renders": {
+        "enemy": "t=12 enemy hp=70 :: (no effects)",
+        "hero": "t=12 hero hp=110 :: (no effects)"
+      },
+      "time": 12
+    },
+    {
+      "after_command": 9,
+      "camera": "reset_wide",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 70,
+        "hero": 110
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=12 enemy hp=70 :: (no effects)",
+        "hero": "t=12 hero hp=110 :: (no effects)"
+      },
+      "time": 12
+    }
+  ],
+  "id": "low_frequency_high_intensity",
+  "note": "观察 bleed 每 4 拍一次的 5 点伤害；暂停区间不补发跳伤。",
+  "observe": [
+    "bleed 每 4 拍跳 5 点；周期点与到期重合时先到期、不补跳",
+    "暂停不推进时钟，恢复后没有补发的跳伤"
+  ],
+  "rejection": null,
+  "seed": 104729,
+  "title": "低频高强度：长周期重击与临界暂停"
+}

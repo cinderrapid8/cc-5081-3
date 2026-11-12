@@ -1,0 +1,58 @@
+{
+  "camera_order": [
+    "over_shoulder",
+    "impact_close",
+    "reset_wide"
+  ],
+  "commands": [
+    {
+      "duration": 12,
+      "name": "bleed",
+      "op": "apply",
+      "source": "brute",
+      "target": "hero"
+    },
+    {
+      "mark": "over_shoulder",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 3
+    },
+    {
+      "mark": "impact_close",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 1
+    },
+    {
+      "op": "pause"
+    },
+    {
+      "op": "resume"
+    },
+    {
+      "op": "advance",
+      "steps": 8
+    },
+    {
+      "mark": "reset_wide",
+      "op": "camera"
+    }
+  ],
+  "entities": {
+    "enemy": 70,
+    "hero": 120
+  },
+  "id": "low_frequency_high_intensity",
+  "note": "观察 bleed 每 4 拍一次的 5 点伤害；暂停区间不补发跳伤。",
+  "observe": [
+    "bleed 每 4 拍跳 5 点；周期点与到期重合时先到期、不补跳",
+    "暂停不推进时钟，恢复后没有补发的跳伤"
+  ],
+  "seed": 104729,
+  "title": "低频高强度：长周期重击与临界暂停"
+}

@@ -1,0 +1,57 @@
+{
+  "camera_order": [
+    "wide_standoff",
+    "freeze_flash",
+    "thaw_reaction"
+  ],
+  "commands": [
+    {
+      "name": "burn",
+      "op": "apply",
+      "source": "imp",
+      "target": "hero"
+    },
+    {
+      "mark": "wide_standoff",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "name": "freeze",
+      "op": "apply",
+      "source": "mage",
+      "target": "hero"
+    },
+    {
+      "mark": "freeze_flash",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 5
+    },
+    {
+      "mark": "thaw_reaction",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 4
+    }
+  ],
+  "entities": {
+    "enemy": 80,
+    "hero": 100
+  },
+  "id": "mutual_suppression",
+  "note": "观察 freeze 挂起 burn 的整段窗口；冻结期间 burn 不累计时间。",
+  "observe": [
+    "burn 在 t2 先跳一次，之后被 freeze 挂起整整 5 拍",
+    "freeze 到期后 burn 恢复，剩余持续期不变，不补发挂起期跳伤"
+  ],
+  "seed": 314159,
+  "title": "互相抑制：控制覆盖伤害，解除后原样恢复剩余期"
+}

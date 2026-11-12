@@ -14,12 +14,41 @@ from .kernel import Engine
 
 
 def run_commands(entities: dict[str, int],
-                 commands: list[dict[str, Any]]) -> Engine:
+                 commands: list[dict[str, Any]],
+                 on_command=None) -> Engine:
     eng = Engine()
     for eid, hp in sorted(entities.items()):
         eng.register_entity(eid, hp)
-    for cmd in commands:
+    for idx, cmd in enumerate(commands):
         _dispatch(eng, cmd)
+        if on_command is not None:
+            on_command(eng, idx, cmd)
+    return eng
+
+
+def run_drill(entities: dict[str, int],
+              commands: list[dict[str, Any]],
+              on_command=None,
+              on_rejection=None) -> Engine:
+    """演练用运行入口。
+
+    与 run_commands 同一条调度路径，但允许标注 ``expect`` 的命令被内核拒绝：
+    拒绝会记录到 ``engine.last_terminated_chain`` 并回调 ``on_rejection``，
+    随后继续执行剩余命令，证明正常演练不受影响。未标注的拒绝仍原样抛出。
+    """
+    eng = Engine()
+    for eid, hp in sorted(entities.items()):
+        eng.register_entity(eid, hp)
+    for idx, cmd in enumerate(commands):
+        try:
+            _dispatch(eng, cmd)
+        except RecursionError as exc:
+            if cmd.get("expect") != "reject_reaction_chain":
+                raise
+            if on_rejection is not None:
+                on_rejection(eng, idx, cmd, exc)
+        if on_command is not None:
+            on_command(eng, idx, cmd)
     return eng
 
 
@@ -43,6 +72,14 @@ def _dispatch(eng: Engine, cmd: dict[str, Any]) -> None:
         eng.destroy_source(cmd["source"])
     elif op == "register":
         eng.register_entity(cmd["entity"], cmd["hp"])
+    elif op == "define_transform":
+        # 反例素材声明的非法触发关系；仅影响该演练实例，随命令重放恢复。
+        eng.transform_overrides[cmd["from_name"]] = cmd["to_name"]
+    elif op == "clear_transform":
+        eng.transform_overrides.pop(cmd["from_name"], None)
+    elif op == "camera":
+        # 仅作画面标记，不改变战斗状态；生成器据此取帧。
+        eng._emit("camera", mark=cmd["mark"])
     else:
         raise ValueError(f"未知命令: {op}")
 

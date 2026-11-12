@@ -1,0 +1,65 @@
+{
+  "camera_order": [
+    "safety_banner",
+    "chain_abort",
+    "playback_continues"
+  ],
+  "commands": [
+    {
+      "name": "burn",
+      "op": "apply",
+      "source": "seed",
+      "target": "hero"
+    },
+    {
+      "from_name": "burn",
+      "op": "define_transform",
+      "to_name": "burn"
+    },
+    {
+      "mark": "safety_banner",
+      "op": "camera"
+    },
+    {
+      "expect": "reject_reaction_chain",
+      "name": "burn",
+      "op": "apply",
+      "source": "looper",
+      "target": "hero"
+    },
+    {
+      "mark": "chain_abort",
+      "op": "camera"
+    },
+    {
+      "from_name": "burn",
+      "op": "clear_transform"
+    },
+    {
+      "name": "hex",
+      "op": "apply",
+      "source": "warlock",
+      "target": "enemy"
+    },
+    {
+      "mark": "playback_continues",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 4
+    }
+  ],
+  "entities": {
+    "enemy": 60,
+    "hero": 100
+  },
+  "id": "illegal_trigger_cycle",
+  "note": "本段声明 burn->burn 自转换；该申请必须被拒绝并保留关系链。",
+  "observe": [
+    "非法申请抛出 RecursionError，事件流留下 reaction_chain_terminated",
+    "拒绝后清空覆盖，后续 hex 申请与推进照常完成"
+  ],
+  "seed": 161803,
+  "title": "反例：非法触发环被内核拒绝，正常演练继续"
+}

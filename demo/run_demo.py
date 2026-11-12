@@ -15,7 +15,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from effects import Engine, IconView
-from effects import kernel as kernel_mod
 from effects.replay import _dispatch, replay, run_commands, save_scenario
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -115,10 +114,10 @@ def main() -> None:
         show(f"命令后 #{idx}")
 
     # 链上限演示：制造无穷互相触发（自转换白盒场景），内核必须终止并报告关系链。
+    # 覆盖声明在引擎实例上，演示结束随实例丢弃，不动全局关系表。
     print("\n=== 无穷互相触发链限制 ===")
     eng.apply_effect("burn", "hero", "loop_seed")
-    saved = dict(kernel_mod.TRANSFORM_MAP)
-    kernel_mod.TRANSFORM_MAP["burn"] = "burn"
+    eng.transform_overrides["burn"] = "burn"
     try:
         eng.apply_effect("burn", "hero", "loop_src")
     except RecursionError as exc:
@@ -127,8 +126,7 @@ def main() -> None:
         for rel in eng.last_terminated_chain:
             print(f"    - {rel}")
     finally:
-        kernel_mod.TRANSFORM_MAP.clear()
-        kernel_mod.TRANSFORM_MAP.update(saved)
+        eng.transform_overrides.pop("burn", None)
 
     # 保存输入并从空状态重放（与演示使用同一份命令表、同一条调度代码路径）。
     save_scenario(SCENARIO_PATH, ENTITIES, COMMANDS)

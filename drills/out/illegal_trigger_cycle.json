@@ -1,0 +1,376 @@
+{
+  "camera_marks": [
+    {
+      "after_battle_command": 2,
+      "mark": "safety_banner"
+    },
+    {
+      "after_battle_command": 3,
+      "mark": "chain_abort"
+    },
+    {
+      "after_battle_command": 5,
+      "mark": "playback_continues"
+    }
+  ],
+  "camera_order": [
+    "safety_banner",
+    "chain_abort",
+    "playback_continues"
+  ],
+  "commands": [
+    {
+      "name": "burn",
+      "op": "apply",
+      "source": "seed",
+      "target": "hero"
+    },
+    {
+      "from_name": "burn",
+      "op": "define_transform",
+      "to_name": "burn"
+    },
+    {
+      "mark": "safety_banner",
+      "op": "camera"
+    },
+    {
+      "expect": "reject_reaction_chain",
+      "name": "burn",
+      "op": "apply",
+      "source": "looper",
+      "target": "hero"
+    },
+    {
+      "mark": "chain_abort",
+      "op": "camera"
+    },
+    {
+      "from_name": "burn",
+      "op": "clear_transform"
+    },
+    {
+      "name": "hex",
+      "op": "apply",
+      "source": "warlock",
+      "target": "enemy"
+    },
+    {
+      "mark": "playback_continues",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    }
+  ],
+  "entities": {
+    "enemy": 60,
+    "hero": 100
+  },
+  "expected_curve_source": "tools.curve（独立小规模计算，非内核状态）",
+  "expected_hp": {
+    "enemy": [
+      60,
+      60,
+      58,
+      58,
+      56
+    ],
+    "hero": [
+      100,
+      100,
+      97,
+      97,
+      94
+    ]
+  },
+  "frames": [
+    {
+      "after_command": 0,
+      "camera": null,
+      "events": [
+        "entity_register",
+        "entity_register",
+        "apply"
+      ],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 1,
+      "camera": null,
+      "events": [],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 2,
+      "camera": "safety_banner",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 3,
+      "camera": "safety_banner",
+      "events": [
+        "transform",
+        "transform",
+        "transform",
+        "transform",
+        "transform",
+        "transform",
+        "transform",
+        "transform",
+        "reaction_chain_terminated"
+      ],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 4,
+      "camera": "chain_abort",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 5,
+      "camera": "chain_abort",
+      "events": [],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: (no effects)",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 6,
+      "camera": "chain_abort",
+      "events": [
+        "apply"
+      ],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: hexx1[iid 2|rem 8|a]",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 7,
+      "camera": "playback_continues",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 60,
+        "hero": 100
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=60 :: hexx1[iid 2|rem 8|a]",
+        "hero": "t=0 hero hp=100 :: burnx1[iid 1|rem 8|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 8,
+      "camera": "playback_continues",
+      "events": [
+        "hp",
+        "tick",
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 58,
+        "hero": 97
+      },
+      "numbers": [
+        {
+          "after": 97,
+          "before": 100,
+          "delta": -3,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "burn",
+            "tick_no": 1
+          },
+          "target": "hero"
+        },
+        {
+          "after": 58,
+          "before": 60,
+          "delta": -2,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 2,
+            "name": "hex",
+            "tick_no": 1
+          },
+          "target": "enemy"
+        }
+      ],
+      "renders": {
+        "enemy": "t=2 enemy hp=58 :: hexx1[iid 2|rem 6|a]",
+        "hero": "t=2 hero hp=97 :: burnx1[iid 1|rem 6|a]"
+      },
+      "time": 2
+    },
+    {
+      "after_command": 9,
+      "camera": "playback_continues",
+      "events": [
+        "hp",
+        "tick",
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 56,
+        "hero": 94
+      },
+      "numbers": [
+        {
+          "after": 94,
+          "before": 97,
+          "delta": -3,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "burn",
+            "tick_no": 2
+          },
+          "target": "hero"
+        },
+        {
+          "after": 56,
+          "before": 58,
+          "delta": -2,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 2,
+            "name": "hex",
+            "tick_no": 2
+          },
+          "target": "enemy"
+        }
+      ],
+      "renders": {
+        "enemy": "t=4 enemy hp=56 :: hexx1[iid 2|rem 4|a]",
+        "hero": "t=4 hero hp=94 :: burnx1[iid 1|rem 4|a]"
+      },
+      "time": 4
+    }
+  ],
+  "id": "illegal_trigger_cycle",
+  "note": "本段声明 burn->burn 自转换；该申请必须被拒绝并保留关系链。",
+  "observe": [
+    "非法申请抛出 RecursionError，事件流留下 reaction_chain_terminated",
+    "拒绝后清空覆盖，后续 hex 申请与推进照常完成"
+  ],
+  "rejection": {
+    "after_command": 3,
+    "chain": [
+      "transform:burn->burn",
+      "transform:burn->burn",
+      "transform:burn->burn",
+      "transform:burn->burn",
+      "transform:burn->burn",
+      "transform:burn->burn",
+      "transform:burn->burn",
+      "transform:burn->burn"
+    ],
+    "effect": {
+      "name": "burn",
+      "source": "looper",
+      "target": "hero"
+    },
+    "error": "效果反应链超过 8 层被终止: transform:burn->burn -> transform:burn->burn -> transform:burn->burn -> transform:burn->burn -> transform:burn->burn -> transform:burn->burn -> transform:burn->burn -> transform:burn->burn",
+    "evidence": [
+      {
+        "chain": [
+          "transform:burn->burn",
+          "transform:burn->burn",
+          "transform:burn->burn",
+          "transform:burn->burn",
+          "transform:burn->burn",
+          "transform:burn->burn",
+          "transform:burn->burn",
+          "transform:burn->burn"
+        ],
+        "limit": 8,
+        "tid": 13,
+        "time": 0,
+        "type": "reaction_chain_terminated"
+      }
+    ],
+    "limit": 8
+  },
+  "seed": 161803,
+  "title": "反例：非法触发环被内核拒绝，正常演练继续"
+}

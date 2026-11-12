@@ -7,7 +7,7 @@ from .kernel import (
     SPECS,
 )
 from .view import IconView, Icon
-from .replay import save_scenario, replay, run_commands
+from .replay import save_scenario, replay, run_commands, run_drill
 
 __all__ = [
     "Engine",
@@ -21,4 +21,5 @@ __all__ = [
     "save_scenario",
     "replay",
     "run_commands",
+    "run_drill",
 ]

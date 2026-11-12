@@ -1,0 +1,68 @@
+{
+  "camera_order": [
+    "source_marked",
+    "source_exit",
+    "residual_icons"
+  ],
+  "commands": [
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider",
+      "target": "hero"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider",
+      "target": "hero"
+    },
+    {
+      "name": "regen",
+      "op": "apply",
+      "source": "spirit",
+      "target": "hero"
+    },
+    {
+      "mark": "source_marked",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 3
+    },
+    {
+      "op": "destroy_source",
+      "source": "spider"
+    },
+    {
+      "mark": "source_exit",
+      "op": "camera"
+    },
+    {
+      "op": "destroy_source",
+      "source": "spirit"
+    },
+    {
+      "mark": "residual_icons",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 4
+    }
+  ],
+  "entities": {
+    "enemy": 50,
+    "hero": 120
+  },
+  "id": "source_revocation",
+  "note": "观察同一来源下不同政策的实例在撤销时的分化。",
+  "observe": [
+    "poison 同源叠为 8 点，t=3 一跳 -8；regen 同刻 +6，生命净减 2",
+    "poison 随 spider 退出立即移除，remove 事件记录 cause=source_exit",
+    "regen 在 spirit 退出后保留，记录 source_exit_kept 并自然到期"
+  ],
+  "seed": 271828,
+  "title": "来源撤销：STACK 随源消亡、REFRESH 保留到期"
+}

@@ -123,6 +123,9 @@ class Engine:
         self.events: list[dict] = []
         # 源实体 -> 它拥有的实例 iid 集合。
         self._owned: dict[str, set[int]] = {}
+        # 白盒/反例素材可显式声明的转换覆盖；生产场景不声明时为空，
+        # 行为与 TRANSFORM_MAP 完全一致。覆盖随引擎实例保存，重放可复原。
+        self.transform_overrides: dict[str, str] = {}
         # 最近一次被反应深度上限终止的关系链。
         self.last_terminated_chain: Optional[list[str]] = None
 
@@ -221,6 +224,12 @@ class Engine:
     # ------------------------------------------------------------------ #
     # 申请效果（含三种叠层政策与相互关系反应）
     # ------------------------------------------------------------------ #
+    def _transform_target(self, name: str) -> Optional[str]:
+        """实例级转换覆盖优先；未声明时回落到内置 TRANSFORM_MAP。"""
+        if name in self.transform_overrides:
+            return self.transform_overrides[name]
+        return TRANSFORM_MAP.get(name)
+
     def apply_effect(self, name: str, target: str, source: str,
                      duration: Optional[int] = None,
                      amount: Optional[int] = None,
@@ -249,7 +258,7 @@ class Engine:
             existing = self.find(target)
             transformed = False
             for old in existing:
-                if old.active and TRANSFORM_MAP.get(old.name) == spec.name:
+                if old.active and self._transform_target(old.name) == spec.name:
                     chain.append(f"transform:{old.name}->{spec.name}")
                     self._emit("transform", iid=old.iid, target=target,
                                from_name=old.name, to_name=spec.name,

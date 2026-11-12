@@ -1,0 +1,312 @@
+{
+  "camera_marks": [
+    {
+      "after_battle_command": 3,
+      "mark": "source_marked"
+    },
+    {
+      "after_battle_command": 5,
+      "mark": "source_exit"
+    },
+    {
+      "after_battle_command": 6,
+      "mark": "residual_icons"
+    }
+  ],
+  "camera_order": [
+    "source_marked",
+    "source_exit",
+    "residual_icons"
+  ],
+  "commands": [
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider",
+      "target": "hero"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider",
+      "target": "hero"
+    },
+    {
+      "name": "regen",
+      "op": "apply",
+      "source": "spirit",
+      "target": "hero"
+    },
+    {
+      "mark": "source_marked",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 3
+    },
+    {
+      "op": "destroy_source",
+      "source": "spider"
+    },
+    {
+      "mark": "source_exit",
+      "op": "camera"
+    },
+    {
+      "op": "destroy_source",
+      "source": "spirit"
+    },
+    {
+      "mark": "residual_icons",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 4
+    }
+  ],
+  "entities": {
+    "enemy": 50,
+    "hero": 120
+  },
+  "expected_curve_source": "tools.curve（独立小规模计算，非内核状态）",
+  "expected_hp": {
+    "enemy": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50
+    ],
+    "hero": [
+      120,
+      120,
+      120,
+      118,
+      118,
+      118,
+      118,
+      118
+    ]
+  },
+  "frames": [
+    {
+      "after_command": 0,
+      "camera": null,
+      "events": [
+        "entity_register",
+        "entity_register",
+        "apply"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=50 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx1[iid 1|rem 10|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 1,
+      "camera": null,
+      "events": [
+        "restack"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=50 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx1[iid 1|rem 10|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 2,
+      "camera": null,
+      "events": [
+        "apply"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=50 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx1[iid 1|rem 10|a] | regenx1[iid 2|rem 6|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 3,
+      "camera": "source_marked",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=50 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx1[iid 1|rem 10|a] | regenx1[iid 2|rem 6|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 4,
+      "camera": "source_marked",
+      "events": [
+        "hp",
+        "tick",
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 118
+      },
+      "numbers": [
+        {
+          "after": 112,
+          "before": 120,
+          "delta": -8,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "poison",
+            "tick_no": 1
+          },
+          "target": "hero"
+        },
+        {
+          "after": 118,
+          "before": 112,
+          "delta": 6,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 2,
+            "name": "regen",
+            "tick_no": 1
+          },
+          "target": "hero"
+        }
+      ],
+      "renders": {
+        "enemy": "t=3 enemy hp=50 :: (no effects)",
+        "hero": "t=3 hero hp=118 :: poisonx1[iid 1|rem 7|a] | regenx1[iid 2|rem 3|a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 5,
+      "camera": "source_marked",
+      "events": [
+        "remove",
+        "source_destroy"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 118
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=3 enemy hp=50 :: (no effects)",
+        "hero": "t=3 hero hp=118 :: regenx1[iid 2|rem 3|a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 6,
+      "camera": "source_exit",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 118
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=3 enemy hp=50 :: (no effects)",
+        "hero": "t=3 hero hp=118 :: regenx1[iid 2|rem 3|a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 7,
+      "camera": "source_exit",
+      "events": [
+        "source_exit_kept",
+        "source_destroy"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 118
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=3 enemy hp=50 :: (no effects)",
+        "hero": "t=3 hero hp=118 :: regenx1[iid 2|rem 3|a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 8,
+      "camera": "residual_icons",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 118
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=3 enemy hp=50 :: (no effects)",
+        "hero": "t=3 hero hp=118 :: regenx1[iid 2|rem 3|a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 9,
+      "camera": "residual_icons",
+      "events": [
+        "remove"
+      ],
+      "hp": {
+        "enemy": 50,
+        "hero": 118
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=7 enemy hp=50 :: (no effects)",
+        "hero": "t=7 hero hp=118 :: (no effects)"
+      },
+      "time": 7
+    }
+  ],
+  "id": "source_revocation",
+  "note": "观察同一来源下不同政策的实例在撤销时的分化。",
+  "observe": [
+    "poison 同源叠为 8 点，t=3 一跳 -8；regen 同刻 +6，生命净减 2",
+    "poison 随 spider 退出立即移除，remove 事件记录 cause=source_exit",
+    "regen 在 spirit 退出后保留，记录 source_exit_kept 并自然到期"
+  ],
+  "rejection": null,
+  "seed": 271828,
+  "title": "来源撤销：STACK 随源消亡、REFRESH 保留到期"
+}

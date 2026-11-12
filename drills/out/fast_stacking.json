@@ -1,0 +1,444 @@
+{
+  "camera_marks": [
+    {
+      "after_battle_command": 2,
+      "mark": "track_left"
+    },
+    {
+      "after_battle_command": 3,
+      "mark": "track_right"
+    },
+    {
+      "after_battle_command": 7,
+      "mark": "tight_on_hero"
+    }
+  ],
+  "camera_order": [
+    "track_left",
+    "track_right",
+    "tight_on_hero"
+  ],
+  "commands": [
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider1",
+      "target": "hero"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider1",
+      "target": "hero"
+    },
+    {
+      "mark": "track_left",
+      "op": "camera"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider2",
+      "target": "hero"
+    },
+    {
+      "mark": "track_right",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "op": "advance",
+      "steps": 1
+    },
+    {
+      "name": "hex",
+      "op": "apply",
+      "source": "warlock",
+      "target": "enemy"
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "mark": "tight_on_hero",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 5
+    }
+  ],
+  "entities": {
+    "enemy": 40,
+    "hero": 120
+  },
+  "expected_curve_source": "tools.curve（独立小规模计算，非内核状态）",
+  "expected_hp": {
+    "enemy": [
+      40,
+      40,
+      40,
+      40,
+      40,
+      38,
+      38,
+      36,
+      36,
+      34,
+      34
+    ],
+    "hero": [
+      120,
+      120,
+      120,
+      108,
+      108,
+      108,
+      96,
+      96,
+      96,
+      84,
+      84
+    ]
+  },
+  "frames": [
+    {
+      "after_command": 0,
+      "camera": null,
+      "events": [
+        "entity_register",
+        "entity_register",
+        "apply"
+      ],
+      "hp": {
+        "enemy": 40,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=40 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx1[iid 1|rem 10|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 1,
+      "camera": null,
+      "events": [
+        "restack"
+      ],
+      "hp": {
+        "enemy": 40,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=40 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx1[iid 1|rem 10|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 2,
+      "camera": "track_left",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 40,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=40 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx1[iid 1|rem 10|a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 3,
+      "camera": "track_left",
+      "events": [
+        "apply"
+      ],
+      "hp": {
+        "enemy": 40,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=40 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx2[iid 1,2|rem 10,10|a,a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 4,
+      "camera": "track_right",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 40,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=0 enemy hp=40 :: (no effects)",
+        "hero": "t=0 hero hp=120 :: poisonx2[iid 1,2|rem 10,10|a,a]"
+      },
+      "time": 0
+    },
+    {
+      "after_command": 5,
+      "camera": "track_right",
+      "events": [],
+      "hp": {
+        "enemy": 40,
+        "hero": 120
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=2 enemy hp=40 :: (no effects)",
+        "hero": "t=2 hero hp=120 :: poisonx2[iid 1,2|rem 8,8|a,a]"
+      },
+      "time": 2
+    },
+    {
+      "after_command": 6,
+      "camera": "track_right",
+      "events": [
+        "hp",
+        "tick",
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 40,
+        "hero": 108
+      },
+      "numbers": [
+        {
+          "after": 112,
+          "before": 120,
+          "delta": -8,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "poison",
+            "tick_no": 1
+          },
+          "target": "hero"
+        },
+        {
+          "after": 108,
+          "before": 112,
+          "delta": -4,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 2,
+            "name": "poison",
+            "tick_no": 1
+          },
+          "target": "hero"
+        }
+      ],
+      "renders": {
+        "enemy": "t=3 enemy hp=40 :: (no effects)",
+        "hero": "t=3 hero hp=108 :: poisonx2[iid 1,2|rem 7,7|a,a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 7,
+      "camera": "track_right",
+      "events": [
+        "apply"
+      ],
+      "hp": {
+        "enemy": 40,
+        "hero": 108
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=3 enemy hp=40 :: hexx1[iid 3|rem 8|a]",
+        "hero": "t=3 hero hp=108 :: poisonx2[iid 1,2|rem 7,7|a,a]"
+      },
+      "time": 3
+    },
+    {
+      "after_command": 8,
+      "camera": "track_right",
+      "events": [
+        "hp",
+        "tick"
+      ],
+      "hp": {
+        "enemy": 38,
+        "hero": 108
+      },
+      "numbers": [
+        {
+          "after": 38,
+          "before": 40,
+          "delta": -2,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 3,
+            "name": "hex",
+            "tick_no": 1
+          },
+          "target": "enemy"
+        }
+      ],
+      "renders": {
+        "enemy": "t=5 enemy hp=38 :: hexx1[iid 3|rem 6|a]",
+        "hero": "t=5 hero hp=108 :: poisonx2[iid 1,2|rem 5,5|a,a]"
+      },
+      "time": 5
+    },
+    {
+      "after_command": 9,
+      "camera": "tight_on_hero",
+      "events": [
+        "camera"
+      ],
+      "hp": {
+        "enemy": 38,
+        "hero": 108
+      },
+      "numbers": [],
+      "renders": {
+        "enemy": "t=5 enemy hp=38 :: hexx1[iid 3|rem 6|a]",
+        "hero": "t=5 hero hp=108 :: poisonx2[iid 1,2|rem 5,5|a,a]"
+      },
+      "time": 5
+    },
+    {
+      "after_command": 10,
+      "camera": "tight_on_hero",
+      "events": [
+        "hp",
+        "tick",
+        "hp",
+        "tick",
+        "hp",
+        "tick",
+        "hp",
+        "tick",
+        "hp",
+        "tick",
+        "hp",
+        "tick",
+        "remove",
+        "remove"
+      ],
+      "hp": {
+        "enemy": 34,
+        "hero": 84
+      },
+      "numbers": [
+        {
+          "after": 100,
+          "before": 108,
+          "delta": -8,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "poison",
+            "tick_no": 2
+          },
+          "target": "hero"
+        },
+        {
+          "after": 96,
+          "before": 100,
+          "delta": -4,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 2,
+            "name": "poison",
+            "tick_no": 2
+          },
+          "target": "hero"
+        },
+        {
+          "after": 36,
+          "before": 38,
+          "delta": -2,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 3,
+            "name": "hex",
+            "tick_no": 2
+          },
+          "target": "enemy"
+        },
+        {
+          "after": 88,
+          "before": 96,
+          "delta": -8,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 1,
+            "name": "poison",
+            "tick_no": 3
+          },
+          "target": "hero"
+        },
+        {
+          "after": 84,
+          "before": 88,
+          "delta": -4,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 2,
+            "name": "poison",
+            "tick_no": 3
+          },
+          "target": "hero"
+        },
+        {
+          "after": 34,
+          "before": 36,
+          "delta": -2,
+          "kind": "hp",
+          "reason": {
+            "event": "tick",
+            "iid": 3,
+            "name": "hex",
+            "tick_no": 3
+          },
+          "target": "enemy"
+        }
+      ],
+      "renders": {
+        "enemy": "t=10 enemy hp=34 :: hexx1[iid 3|rem 1|a]",
+        "hero": "t=10 hero hp=84 :: (no effects)"
+      },
+      "time": 10
+    }
+  ],
+  "id": "fast_stacking",
+  "note": "观察同源 poison 强度叠加与异源独立实例的层级差异。",
+  "observe": [
+    "同源 spider1 只有一个实例、强度叠加为 8；spider2 是独立实例",
+    "t=3 同源实例一跳 -8，异源实例一跳 -4",
+    "hex 在异目标独立计时，t=5/t=7 各跳 2 点"
+  ],
+  "rejection": null,
+  "seed": 8675309,
+  "title": "快速叠层：同源连击叠强度、异源独立计时"
+}

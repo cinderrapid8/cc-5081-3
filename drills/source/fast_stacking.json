@@ -1,0 +1,70 @@
+{
+  "camera_order": [
+    "track_left",
+    "track_right",
+    "tight_on_hero"
+  ],
+  "commands": [
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider1",
+      "target": "hero"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider1",
+      "target": "hero"
+    },
+    {
+      "mark": "track_left",
+      "op": "camera"
+    },
+    {
+      "name": "poison",
+      "op": "apply",
+      "source": "spider2",
+      "target": "hero"
+    },
+    {
+      "mark": "track_right",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 3
+    },
+    {
+      "name": "hex",
+      "op": "apply",
+      "source": "warlock",
+      "target": "enemy"
+    },
+    {
+      "op": "advance",
+      "steps": 2
+    },
+    {
+      "mark": "tight_on_hero",
+      "op": "camera"
+    },
+    {
+      "op": "advance",
+      "steps": 5
+    }
+  ],
+  "entities": {
+    "enemy": 40,
+    "hero": 120
+  },
+  "id": "fast_stacking",
+  "note": "观察同源 poison 强度叠加与异源独立实例的层级差异。",
+  "observe": [
+    "同源 spider1 只有一个实例、强度叠加为 8；spider2 是独立实例",
+    "t=3 同源实例一跳 -8，异源实例一跳 -4",
+    "hex 在异目标独立计时，t=5/t=7 各跳 2 点"
+  ],
+  "seed": 8675309,
+  "title": "快速叠层：同源连击叠强度、异源独立计时"
+}
